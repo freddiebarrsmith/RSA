@@ -3,8 +3,10 @@ import math
 p = 3
 q = 11
 m = 2
-
+messagestring = ""
 def plaintextencoder(m):
+    for letter in messagestring:
+        print letter
     return None
 
 def ncalculate(p, q):
@@ -31,8 +33,8 @@ def exponentcalculator(phi):
         else:
            continue
 
-#e = exponentcalculator(phi)
-e = 7
+e = exponentcalculator(phi)
+#e = 7
 
 #d = 3
 def multiplicative_inverse(e, phi):
