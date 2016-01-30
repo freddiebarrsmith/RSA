@@ -13,6 +13,8 @@ def ncalculate(p, q):
         n = p * q
         return n
 
+
+
 n = ncalculate(p, q)
 print n
 def phicalculate(p, q):
@@ -37,30 +39,25 @@ e = exponentcalculator(phi)
 #e = 7
 
 #d = 3
-def multiplicative_inverse(e, phi):
-    d = 0
-    x1 = 0
-    x2 = 1
-    y1 = 1
-    temp_phi = phi
+#https://en.wikibooks.org/wiki/Algorithm_Implementation/Mathematics/Extended_Euclidean_algorithm
+def egcd(a, b):
+    x,y, u,v = 0,1, 1,0
+    while a != 0:
+        q, r = b//a, b%a
+        m, n = x-u*q, y-v*q
+        b,a, x,y, u,v = a,r, u,v, m,n
+    gcd = b
+    return gcd, x, y
 
-    while e > 0:
-        temp1 = temp_phi/e
-        temp2 = temp_phi - temp1 * e
-        temp_phi = e
-        e = temp2
 
-        x = x2- temp1* x1
-        y = d - temp1 * y1
+def modinv(a, m):
+    gcd, x, y = egcd(a, m)
+    if gcd != 1:
+        return None  # modular inverse does not exist
+    else:
+        return x % m
 
-        x2 = x1
-        x1 = x
-        d = y1
-        y1 = y
-
-    if temp_phi == 1:
-        return d
-d =  multiplicative_inverse(e, phi)
+d =  modinv(e, phi)
 print "d:"
 print d
 
