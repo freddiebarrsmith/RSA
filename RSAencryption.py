@@ -3,8 +3,8 @@ import math
 #Substitute any pair of primes into p or q, m is the message to be encrypted. 
 #TODO: plaintextencoder can be used to change plaintext into a numerical representation. 
 
-p = 3
-q = 11
+p = 131
+q = 151
 m = 2
 #messagestring = ""
 #def plaintextencoder(m):
@@ -68,7 +68,7 @@ def encryptionalgo(m, d, e, phi):
     print m
     print d
     print e
-    cipher1 = math.pow(m, e)
+    cipher1 = pow(m, e)
     cipher2 = cipher1 % n
     print "ciphertext"
     print cipher2
@@ -76,8 +76,9 @@ def encryptionalgo(m, d, e, phi):
 
 cipher2 = encryptionalgo(m, d, e, phi)
 def decryptionalgo(m, d, e, phi, cipher2):
-    cipher3 = math.pow(cipher2, d)
+    cipher3 = pow(cipher2, d)
     cipher4 = cipher3 % n
+    print "decrypted"
     print cipher4
 
 decryptionalgo(m, d, e, phi, cipher2)
