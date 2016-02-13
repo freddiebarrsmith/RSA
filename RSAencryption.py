@@ -1,13 +1,16 @@
 from fractions import gcd
 import math
+#Substitute any pair of primes into p or q, m is the message to be encrypted. 
+#TODO: plaintextencoder can be used to change plaintext into a numerical representation. 
+
 p = 3
 q = 11
 m = 2
-messagestring = ""
-def plaintextencoder(m):
-    for letter in messagestring:
-        print letter
-    return None
+#messagestring = ""
+#def plaintextencoder(m):
+#    for letter in messagestring:
+#        print letter
+#    return None
 
 def ncalculate(p, q):
         n = p * q
