@@ -9,6 +9,9 @@ p = 131
 q = 151
 m = 2
 letterarray = []
+encryptedarray = []
+decryptedarray = []
+plaintextarray = []
 messagestring = "test"
 
 #awesome idea: for the message encrypting thing
@@ -25,9 +28,12 @@ def plaintextencoder():
     print letterarray
 #output of this function needs to be an array
 
-plaintextencoder()
 
-#def plaintextdecoder(m)
+def plaintextdecoder():
+    for letter in messagestring:
+        print "ordletter"
+        chrletter = chr(letter)
+        letterarray.append(chrletter)
 
 
 
@@ -93,11 +99,27 @@ def encryptionalgo(m, d, e, phi):
     print cipher2
     return cipher2
 
-cipher2 = encryptionalgo(m, d, e, phi)
+for letter in letterarray:
+    print "letter"
+    print letter
+    m = letter
+    cipher2 = encryptionalgo(m, d, e, phi)
+    encryptedarray.append(cipher2)
+
+
+
 def decryptionalgo(m, d, e, phi, cipher2):
     cipher3 = pow(cipher2, d)
     cipher4 = cipher3 % n
     print "decrypted"
     print cipher4
 
-decryptionalgo(m, d, e, phi, cipher2)
+for letter in encryptedarray:
+    print "letterdecrypted"
+    print letter
+    cipherx = letter
+    cipher2 = decryptionalgo(m, d, e, phi, cipherx)
+    decryptedarray.append(cipher2)
+
+#decryptionalgo(m, d, e, phi, cipher2)
+
