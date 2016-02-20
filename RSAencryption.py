@@ -1,16 +1,35 @@
 from fractions import gcd
 import math
 #Substitute any pair of primes into p or q, m is the message to be encrypted. 
-#TODO: plaintextencoder can be used to change plaintext into a numerical representation. 
+#TODO: plaintextencoder can be used to change plaintext into a numerical representation.
+#add auto pulling of primes (use beautifulsoup)
+#object orientation?
 
 p = 131
 q = 151
 m = 2
-#messagestring = ""
-#def plaintextencoder(m):
-#    for letter in messagestring:
-#        print letter
-#    return None
+letterarray = []
+messagestring = "test"
+
+#awesome idea: for the message encrypting thing
+#give each letter an ascii value
+#then put these values into an array and process them one at a time
+
+
+def plaintextencoder():
+    for letter in messagestring:
+        print "ordletter"
+        ordletter = ord(letter)
+        letterarray.append(ordletter)
+
+    print letterarray
+#output of this function needs to be an array
+
+plaintextencoder()
+
+#def plaintextdecoder(m)
+
+
 
 def ncalculate(p, q):
         n = p * q
