@@ -1,40 +1,30 @@
+
 from fractions import gcd
 import math
-#Substitute any pair of primes into p or q, m is the message to be encrypted. 
+#Substitute any pair of primes into p or q, m is the message to be encrypted.
 #TODO: plaintextencoder can be used to change plaintext into a numerical representation.
-#add auto pulling of primes (use beautifulsoup)
-#object orientation?
 
 p = 131
 q = 151
-m = 2
+#m = 2
+#messagestring = "a"
+#ordletter = ord(messagestring)
+#def plaintextencoder(m):
+#    for letter in messagestring:
+#        print letter
+#    return None
 letterarray = []
 encryptedarray = []
 decryptedarray = []
-plaintextarray = []
-messagestring = "test"
+letter1 = ord("r")
+letter2 = ord("e")
+letter3 = ord("k")
+letter4 = ord("t")
 
-#awesome idea: for the message encrypting thing
-#give each letter an ascii value
-#then put these values into an array and process them one at a time
-
-
-def plaintextencoder():
-    for letter in messagestring:
-        print "ordletter"
-        ordletter = ord(letter)
-        letterarray.append(ordletter)
-
-    print letterarray
-#output of this function needs to be an array
-
-
-def plaintextdecoder():
-    for letter in messagestring:
-        print "ordletter"
-        chrletter = chr(letter)
-        letterarray.append(chrletter)
-
+letterarray.append(letter1)
+letterarray.append(letter2)
+letterarray.append(letter3)
+letterarray.append(letter4)
 
 
 def ncalculate(p, q):
@@ -90,6 +80,7 @@ print "d:"
 print d
 
 def encryptionalgo(m, d, e, phi):
+    print "m:"
     print m
     print d
     print e
@@ -99,27 +90,22 @@ def encryptionalgo(m, d, e, phi):
     print cipher2
     return cipher2
 
-for letter in letterarray:
-    print "letter"
-    print letter
-    m = letter
-    cipher2 = encryptionalgo(m, d, e, phi)
-    encryptedarray.append(cipher2)
-
-
-
-def decryptionalgo(m, d, e, phi, cipher2):
+def decryptionalgo( d, e, phi, cipher2):
     cipher3 = pow(cipher2, d)
     cipher4 = cipher3 % n
     print "decrypted"
     print cipher4
+    return cipher4
 
-for letter in encryptedarray:
-    print "letterdecrypted"
-    print letter
-    cipherx = letter
-    cipher2 = decryptionalgo(m, d, e, phi, cipherx)
-    decryptedarray.append(cipher2)
+for letter in letterarray:
+    plaintext = letter
+    cipher2 = encryptionalgo(plaintext, d, e, phi)
+    encryptedarray.append(cipher2)
 
-#decryptionalgo(m, d, e, phi, cipher2)
+    decryptionoutput = decryptionalgo(d, e, phi, cipher2)
+    decryptedarray.append(int(decryptionoutput))
+    print decryptedarray
 
+for letter2 in decryptedarray:
+    str = chr(letter2)
+    print str
