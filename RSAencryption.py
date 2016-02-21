@@ -1,32 +1,27 @@
 
 from fractions import gcd
 import math
+#TODO: Import all discovered primes and randomly select
 #Substitute any pair of primes into p or q, m is the message to be encrypted.
-#TODO: plaintextencoder can be used to change plaintext into a numerical representation.
 
 p = 131
 q = 151
-#m = 2
-#messagestring = "a"
-#ordletter = ord(messagestring)
-#def plaintextencoder(m):
-#    for letter in messagestring:
-#        print letter
-#    return None
+s = ""
+s2 = ""
+
 letterarray = []
 encryptedarray = []
 decryptedarray = []
-letter1 = ord("r")
-letter2 = ord("e")
-letter3 = ord("k")
-letter4 = ord("t")
+print "Plaintext:"
+messagestring = "testing"
+print messagestring
 
-letterarray.append(letter1)
-letterarray.append(letter2)
-letterarray.append(letter3)
-letterarray.append(letter4)
+#Get ASCII representation of each character
+for letter in messagestring:
+        ordletter = ord(letter)
+        letterarray.append(ordletter)
 
-
+# Calculating n which is just p multiplied by q
 def ncalculate(p, q):
         n = p * q
         return n
@@ -34,20 +29,21 @@ def ncalculate(p, q):
 
 
 n = ncalculate(p, q)
-print n
+
+#Calculating phi which is thankfully just (p-1) x (q-1)
+
 def phicalculate(p, q):
         phelper = p - 1
         qhelper = q - 1
         phi = phelper * qhelper
         return phi
 phi = phicalculate(p, q)
-print phi
 
+#Calculating exponent, which is highest relative prime between 1 and phi
 
 def exponentcalculator(phi):
     for e in xrange(2,phi):
         if gcd(e,phi) == 1 :
-           print e
            return e
            break
         else:
@@ -76,36 +72,50 @@ def modinv(a, m):
         return x % m
 
 d =  modinv(e, phi)
-print "d:"
-print d
+
+
+# Encryption algorithm which multiplies the plaintext (m) to the power of the exponent, then divided by n
 
 def encryptionalgo(m, d, e, phi):
-    print "m:"
-    print m
-    print d
-    print e
+
     cipher1 = pow(m, e)
     cipher2 = cipher1 % n
-    print "ciphertext"
-    print cipher2
+
     return cipher2
 
-def decryptionalgo( d, e, phi, cipher2):
+# Decryption algorithm which times ciphertext by the modular inverse of d and phi
+
+
+def decryptionalgo(d, e, phi, cipher2):
     cipher3 = pow(cipher2, d)
     cipher4 = cipher3 % n
-    print "decrypted"
-    print cipher4
+
     return cipher4
+
+#This is where the encryption happens
 
 for letter in letterarray:
     plaintext = letter
     cipher2 = encryptionalgo(plaintext, d, e, phi)
     encryptedarray.append(cipher2)
 
-    decryptionoutput = decryptionalgo(d, e, phi, cipher2)
+#This is where the decryption happens
+
+for encryptedletter in encryptedarray:
+    decryptionoutput = decryptionalgo(d, e, phi, encryptedletter)
     decryptedarray.append(int(decryptionoutput))
-    print decryptedarray
+
+
+for letter2 in encryptedarray:
+
+    s2 += str(letter2)
+
+print "Encrypted Ciphertext:"
+print s2
 
 for letter2 in decryptedarray:
-    str = chr(letter2)
-    print str
+    string = chr(letter2)
+    s += str(string)
+
+print "Decrypted Plaintext:"
+print s
